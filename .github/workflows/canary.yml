@@ -1,0 +1,21 @@
+name: ComfyUI master canary
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  master:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Write a CPU config on ComfyUI master
+        run: printf '[comfyui]\nref = "master"\n\n[python]\ntorch_index_url = "https://download.pytorch.org/whl/cpu"\n\n[server]\nargs = ["--cpu"]\n' > headless.toml
+      - run: python headless.py install
+      - run: python headless.py check
+      - run: python scripts/smoke_test.py

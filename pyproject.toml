@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comfyui-headless"
+dynamic = ["version"]
+description = "Install and run ComfyUI as an API-only server with token authentication."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Jordan Thompson (WASasquatch)" }]
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: Console",
+]
+
+[project.urls]
+Repository = "https://github.com/WASasquatch/ComfyUI_headless"
+
+[project.scripts]
+comfyui-headless = "comfyui_headless.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "comfyui_headless.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

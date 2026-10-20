@@ -1,0 +1,10 @@
+/ComfyUI/
+/.venv/
+/.headless/
+/headless.toml
+/tokens.json
+__pycache__/
+*.py[cod]
+/build/
+/dist/
+*.egg-info/
